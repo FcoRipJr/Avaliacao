@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PessoaRequest;
 use App\Models\Pessoa;
+use App\Models\Contato;
 use Carbon\Carbon;
 
 class PessoaController extends Controller
 {
     public function index(){
-      
         $pessoas = Pessoa::all();
+        $contatos = Contato::all();
         return view('pessoas.index',[
-            'pessoas' => $pessoas
+            'pessoas' => $pessoas,
+            'contatos' => $contatos
         ]);
 
     }
@@ -31,7 +33,11 @@ class PessoaController extends Controller
 
     public function edit($id){
         $pessoa = Pessoa::findorfail($id);
-        return view('pessoa.form')->with('noticia', $pessoa);
+        $contatos = Contato::all()->where('pessoa_id',$id);
+        return view('pessoa.form',[
+            'pessoa' => $pessoa,
+            'contatos' => $contatos
+        ]);
     }
 
     public function update($id, PessoaRequest $request)

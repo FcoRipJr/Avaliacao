@@ -10,6 +10,9 @@ class Contato extends Model
 {
     use HasFactory;
 
+    protected $table = 'contatos';
+    protected $guarded = [];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function pessoa() 
     {

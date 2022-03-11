@@ -11,8 +11,9 @@ class Pessoa extends Model
 {
     use HasFactory;
 
-
-
+    protected $table = 'pessoas';
+    protected $guarded = [];
+    protected $dates = ['created_at', 'updated_at', 'data_nasc'];
 
     public function contatos()
     {
