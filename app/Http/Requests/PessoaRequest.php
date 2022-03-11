@@ -25,11 +25,11 @@ class PessoaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required',
-            'cpf' => 'required',
-            'email' => 'required',
+            'nome' => 'required|max:50',
+            'cpf' => 'required|max:15',
+            'email' => 'required|email',
             'data_nasc' => 'date_format:d/m/Y',
-            'nacionalidade' => 'required'
+            'nacionalidade' => 'required|max:20'
         ];
     }
 
